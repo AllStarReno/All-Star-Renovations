@@ -4,147 +4,178 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import Contact from './Contact';
 import AIChat from './AIChat';
-import { Star, CheckCircle2, MapPin } from 'lucide-react';
+import { Star, CheckCircle2, MapPin, ArrowRight, ShieldCheck, Clock } from 'lucide-react';
 import { Section } from '../types';
 
 type LocationService = {
   title: string;
   description: string;
   features: string[];
+  linkAnchorText: string;
 };
 
 type LocationData = {
   id: string;
   name: string;
+  state: string;
   desc: string;
   services: LocationService[];
-  coordinates: { x: number; y: number }; // Relative percentages for the map
+  coordinates: { x: number; y: number };
+  postalCode: string;
 };
 
 const locations: LocationData[] = [
   { 
     id: 'conway', 
     name: 'Conway', 
-    desc: 'As Conway\'s premier hometown remodeling contractor, we provide expert kitchen and bathroom renovations tailored to Faulkner County homeowners.',
+    state: 'AR',
+    postalCode: '72032',
+    desc: 'As Conway\'s premier hometown bathroom remodeling contractor, we provide expert shower replacements, tub-to-shower conversions, and walk-in tubs tailored to Faulkner County homeowners.',
     coordinates: { x: 35, y: 35 },
     services: [
       {
-        title: 'Conway Bathroom Remodeling',
-        description: 'Transform your Conway home with our premium bathroom renovations. From modern master baths to efficient guest bathroom updates, we handle it all.',
-        features: ['Tub-to-Shower Conversions', 'Custom Walk-In Showers', 'Aging-in-Place Solutions', 'Luxury Vanities & Tile']
+        title: 'Conway Bathroom Remodeling & Conversions',
+        description: 'Transform your Conway home with our high-end acrylic and tile bathroom renovations. From master suites to efficient guest bath tub-to-shower conversions, we complete projects in 1-2 days.',
+        features: ['Conway Tub-to-Shower Conversions', 'Custom Walk-In Showers', 'Aging-in-Place Bathrooms', 'Mold-Resistant Acrylic Wall Systems'],
+        linkAnchorText: 'Explore Conway Shower Replacements'
       },
       {
-        title: 'Kitchen Renovations in Conway',
-        description: 'Upgrade the heart of your home with our comprehensive kitchen remodeling services, designed specifically for your family\'s lifestyle.',
-        features: ['Custom Cabinet Installation', 'Granite & Quartz Countertops', 'Kitchen Island Design', 'Modern Lighting Fixtures']
+        title: 'Walk-In Tubs & Hydrotherapy in Conway',
+        description: 'Upgrade to a safe, therapeutic walk-in bathtub in Conway, AR. Features include low step-in threshold, hydro jets, quick drain technology, and heated seats.',
+        features: ['Low Step-In Bathing', 'Hydrotherapy & Microbubble Jets', 'Slip-Resistant Flooring', 'ADA Grab Bars & Built-in Seating'],
+        linkAnchorText: 'View Conway Walk-In Tubs'
       }
     ]
   },
   { 
     id: 'greenbrier', 
     name: 'Greenbrier', 
-    desc: 'Top-rated renovation contractors serving Greenbrier, AR with high-quality, reliable home improvement solutions.',
+    state: 'AR',
+    postalCode: '72058',
+    desc: 'Top-rated renovation contractors serving Greenbrier, AR with high-quality, durable bathroom upgrades and accessible walk-in shower installations.',
     coordinates: { x: 35, y: 15 },
     services: [
       {
-        title: 'Greenbrier Bathroom Upgrades',
-        description: 'Elevate your Greenbrier home\'s comfort and value with our fast, reliable bathroom remodeling services, often completed in just 1-2 days.',
-        features: ['Shower Replacements', 'Accessible Walk-In Tubs', 'Mold-Resistant Materials', 'Complete Bathroom Makeovers']
+        title: 'Greenbrier Bathroom Remodeling & Upgrades',
+        description: 'Elevate your Greenbrier home\'s comfort and market value with our fast, reliable bathroom remodeling services, completed in as little as 24 to 48 hours.',
+        features: ['Greenbrier Shower Replacements', 'Accessible Walk-In Tubs', 'Mold-Resistant Non-Porous Surfaces', 'Full Bathroom Makeovers'],
+        linkAnchorText: 'Explore Greenbrier Bathroom Remodeling'
       },
       {
-        title: 'Custom Kitchens in Greenbrier',
-        description: 'Create a stunning, functional kitchen space with our expert design and installation team serving the Greenbrier community.',
-        features: ['Cabinet Refacing & Replacement', 'Durable Countertop Upgrades', 'Tile Backsplashes', 'Open Concept Kitchens']
+        title: 'Tub-to-Shower Conversions in Greenbrier',
+        description: 'Convert old, unused tubs into modern walk-in showers with custom wall surrounds, frameless glass doors, and luxury fixtures in Greenbrier.',
+        features: ['Custom Wall Colors & Tile Patterns', 'Leak-Proof Barrier Technology', 'Lifetime Limited Warranty', 'Rapid 1-2 Day Setup'],
+        linkAnchorText: 'Discover Greenbrier Tub Conversions'
       }
     ]
   },
   { 
     id: 'vilonia', 
     name: 'Vilonia', 
-    desc: 'Custom home remodeling and renovations in Vilonia, AR, bringing modern luxury and functionality to your doorstep.',
+    state: 'AR',
+    postalCode: '72173',
+    desc: 'Custom bathroom remodeling and renovations in Vilonia, AR, bringing modern luxury, safety, and functionality to your doorstep.',
     coordinates: { x: 65, y: 35 },
     services: [
       {
         title: 'Vilonia Bathroom Transformations',
         description: 'Experience a spa-like retreat right in your Vilonia home. We specialize in high-end bathroom remodels that maximize space and style.',
-        features: ['Spa-Like Shower Systems', 'Freestanding Tubs', 'Custom Tile Work', 'Double Vanity Installations']
+        features: ['Spa-Like Shower Systems', 'Low-Maintenance Wall Surrounds', 'Custom Fixtures & Seating', 'Double Vanity Upgrades'],
+        linkAnchorText: 'Explore Vilonia Bathroom Transformations'
       },
       {
-        title: 'Kitchen Remodeling for Vilonia',
-        description: 'From minor updates to complete kitchen overhauls, our team delivers exceptional craftsmanship for Vilonia homeowners.',
-        features: ['Smart Kitchen Layouts', 'Premium Cabinetry', 'Energy-Efficient Lighting', 'Custom Pantry Solutions']
+        title: 'Aging-in-Place Bathrooms in Vilonia',
+        description: 'Stay independent and safe in your Vilonia home with custom barrier-free showers, grab bars, and safety walk-in tubs.',
+        features: ['Zero-Threshold Showers', 'ADA Compliant Seating', 'Slip-Resistant Surfaces', 'Quick Clean Mold Resistance'],
+        linkAnchorText: 'View Vilonia Accessibility Solutions'
       }
     ]
   },
   { 
     id: 'maumelle', 
     name: 'Maumelle', 
-    desc: 'Premium kitchen and bath upgrades for Maumelle, AR homes, focusing on elegant designs and superior craftsmanship.',
+    state: 'AR',
+    postalCode: '72113',
+    desc: 'Premium bathroom remodeling for Maumelle, AR homes, focusing on elegant designs, walk-in showers, and superior craftsmanship.',
     coordinates: { x: 45, y: 60 },
     services: [
       {
-        title: 'Luxury Bathrooms in Maumelle',
-        description: 'Upgrade your Maumelle residence with our luxury bathroom remodeling services, featuring premium fixtures and elegant finishes.',
-        features: ['High-End Shower Enclosures', 'Luxury Soaking Tubs', 'Heated Flooring Options', 'Custom Glass Doors']
+        title: 'Luxury Bathroom Remodeling in Maumelle',
+        description: 'Upgrade your Maumelle residence with our luxury bathroom remodeling services, featuring premium non-porous fixtures and elegant tile-look finishes.',
+        features: ['High-End Glass Shower Enclosures', 'Tub-to-Shower Conversions', 'Water-Efficient Fixtures', 'Custom Quartz & Acrylic Surrounds'],
+        linkAnchorText: 'Explore Maumelle Luxury Bathrooms'
       },
       {
-        title: 'Maumelle Kitchen Upgrades',
-        description: 'Enhance your home\'s value and aesthetic with a state-of-the-art kitchen remodel tailored to your Maumelle property.',
-        features: ['Chef-Inspired Kitchen Designs', 'Luxury Stone Countertops', 'Custom Range Hoods', 'Built-In Appliances']
+        title: 'Maumelle Walk-In Showers & Tubs',
+        description: 'Replace aging bathtubs with sleek walk-in shower systems designed specifically for Maumelle homeowners seeking luxury and ease of maintenance.',
+        features: ['Custom Color Palette Options', 'Hydrotherapy Tub Installs', 'Fast 1-2 Day Installation', 'Lifetime Warranty Protection'],
+        linkAnchorText: 'View Maumelle Walk-In Showers'
       }
     ]
   },
   { 
     id: 'little-rock', 
     name: 'Little Rock', 
-    desc: 'Professional remodeling services across Little Rock, AR, delivering exceptional quality for the metro area\'s finest homes.',
+    state: 'AR',
+    postalCode: '72201',
+    desc: 'Professional bathroom remodeling services across Little Rock, AR, delivering exceptional quality for the metro area\'s finest homes.',
     coordinates: { x: 55, y: 85 },
     services: [
       {
         title: 'Little Rock Bathroom Remodeling',
         description: 'Serving the Little Rock metro area with top-tier bathroom renovations. We specialize in modernizing historic and contemporary homes alike.',
-        features: ['Master Bathroom Suites', 'Space-Saving Shower Conversions', 'ADA Compliant Bathrooms', 'Premium Fixture Upgrades']
+        features: ['Master Bathroom Suites', 'Space-Saving Shower Conversions', 'ADA Compliant Bathrooms', 'Premium Fixture Upgrades'],
+        linkAnchorText: 'Explore Little Rock Bathroom Remodeling'
       },
       {
-        title: 'Kitchen Renovations in Little Rock',
-        description: 'Transform your Little Rock kitchen into a culinary masterpiece with our comprehensive design and build services.',
-        features: ['Complete Kitchen Overhauls', 'Custom Cabinetry Design', 'High-End Countertops', 'Modern Tile Backsplashes']
+        title: 'Little Rock Tub-to-Shower Conversions',
+        description: 'Replace outmoded bathtubs with spacious walk-in showers for your Little Rock property with minimum hassle and zero mess.',
+        features: ['1-2 Day Fast Turnaround', 'High-Grade Acrylic Walls', 'Lifetime Limited Warranty', 'Easy-Clean Surfaces'],
+        linkAnchorText: 'View Little Rock Tub Conversions'
       }
     ]
   },
   { 
     id: 'north-little-rock', 
     name: 'North Little Rock', 
-    desc: 'Trusted home renovation experts in North Little Rock, AR, dedicated to bringing your dream spaces to life.',
+    state: 'AR',
+    postalCode: '72114',
+    desc: 'Trusted home bathroom renovation experts in North Little Rock, AR, dedicated to bringing your dream spaces to life.',
     coordinates: { x: 60, y: 70 },
     services: [
       {
-        title: 'NLR Bathroom Makeovers',
+        title: 'North Little Rock Bathroom Makeovers',
         description: 'Revitalize your North Little Rock bathroom with our efficient, high-quality remodeling solutions designed for lasting beauty.',
-        features: ['Quick 1-2 Day Installs', 'Tub-to-Shower Conversions', 'Mold-Resistant Showers', 'Updated Vanities']
+        features: ['Quick 1-2 Day Installs', 'Tub-to-Shower Conversions', 'Mold-Resistant Showers', 'Updated Vanities'],
+        linkAnchorText: 'Explore North Little Rock Remodeling'
       },
       {
-        title: 'North Little Rock Kitchens',
-        description: 'Upgrade your cooking and dining experience with a custom kitchen remodel in North Little Rock.',
-        features: ['Kitchen Island Additions', 'Cabinet Replacements', 'Quartz & Granite Surfaces', 'Updated Flooring']
+        title: 'NLR Walk-In Tubs & Bath Safety',
+        description: 'Provide safe bathing options for seniors and mobility-impaired loved ones in North Little Rock with hydrotherapy walk-in tubs.',
+        features: ['Low Step-In Thresholds', 'Safety Handrails', 'Quick-Drain Technology', 'Soaking & Massage Jets'],
+        linkAnchorText: 'View North Little Rock Walk-In Tubs'
       }
     ]
   },
   { 
     id: 'sherwood', 
     name: 'Sherwood', 
-    desc: 'High-quality kitchen and bathroom remodels in Sherwood, AR, combining beautiful aesthetics with practical functionality.',
+    state: 'AR',
+    postalCode: '72120',
+    desc: 'High-quality bathroom remodels in Sherwood, AR, combining beautiful aesthetics with practical safety functionality.',
     coordinates: { x: 65, y: 55 },
     services: [
       {
         title: 'Sherwood Bathroom Renovations',
-        description: 'Create a relaxing, beautiful bathroom in your Sherwood home with our expert remodeling and conversion services.',
-        features: ['Custom Shower Designs', 'Safe Walk-In Tubs', 'Modern Bathroom Lighting', 'Water-Efficient Fixtures']
+        description: 'Create a relaxing, beautiful bathroom in your Sherwood home with our expert shower replacement and conversion services.',
+        features: ['Custom Shower Designs', 'Safe Walk-In Tubs', 'Modern Bathroom Fixtures', 'Water-Efficient Aerators'],
+        linkAnchorText: 'Explore Sherwood Bathroom Renovations'
       },
       {
-        title: 'Kitchen Remodeling in Sherwood',
-        description: 'Bring your dream kitchen to life in Sherwood with our personalized design process and expert installation.',
-        features: ['Custom Kitchen Layouts', 'Beautiful Stone Countertops', 'Tile & Hardwood Flooring', 'Custom Storage Solutions']
+        title: 'Sherwood Tub-to-Shower Conversions',
+        description: 'Ditch the high tub wall and step comfortably into a luxury walk-in shower engineered for easy cleaning in Sherwood.',
+        features: ['Low Maintenance Materials', 'Custom Shelving & Footrests', 'Professional Master Installers', 'Lifetime Warranty'],
+        linkAnchorText: 'View Sherwood Tub Conversions'
       }
     ]
   },
@@ -157,6 +188,54 @@ const LocationPage: React.FC = () => {
   const [highlight, setHighlight] = useState(false);
 
   useEffect(() => {
+    if (location) {
+      // Dynamic Title Tag SEO Requirement
+      document.title = `Bathroom Remodeling in ${location.name}, ${location.state} | All-Star Renovations`;
+
+      // Dynamic JSON-LD Schema Injection
+      const schemaScriptId = 'location-jsonld-schema';
+      let scriptTag = document.getElementById(schemaScriptId) as HTMLScriptElement | null;
+      if (!scriptTag) {
+        scriptTag = document.createElement('script');
+        scriptTag.id = schemaScriptId;
+        scriptTag.type = 'application/ld+json';
+        document.head.appendChild(scriptTag);
+      }
+
+      const locationSchema = {
+        "@context": "https://schema.org",
+        "@type": "HomeAndConstructionBusiness",
+        "name": `All-Star Renovations - ${location.name}`,
+        "description": location.desc,
+        "url": `https://allstarreno.com/location/${location.id}`,
+        "telephone": "+15015043398",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "11 Arnett Ln",
+          "addressLocality": location.name,
+          "addressRegion": location.state,
+          "postalCode": location.postalCode,
+          "addressCountry": "US"
+        },
+        "areaServed": {
+          "@type": "City",
+          "name": location.name,
+          "containedInPlace": {
+            "@type": "State",
+            "name": "Arkansas"
+          }
+        },
+        "knowsAbout": [
+          `Bathroom Remodeling in ${location.name} AR`,
+          `Tub to Shower Conversion ${location.name} AR`,
+          `Walk-In Tubs ${location.name} AR`,
+          `Shower Replacement ${location.name} AR`
+        ]
+      };
+
+      scriptTag.text = JSON.stringify(locationSchema);
+    }
+
     if (routerLocation.hash === '#services') {
       const el = document.getElementById('services');
       if (el) {
@@ -169,16 +248,19 @@ const LocationPage: React.FC = () => {
     } else {
       window.scrollTo(0, 0);
     }
-  }, [locationId, routerLocation.hash]);
+  }, [locationId, routerLocation.hash, location]);
 
   if (!location) {
     return (
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col bg-[#F9FAFB]">
         <Navbar />
-        <div className="flex-grow flex items-center justify-center pt-24">
+        <div className="flex-grow flex items-center justify-center pt-32">
           <div className="text-center">
-            <h1 className="text-4xl font-bold mb-4">Location Not Found</h1>
-            <Link to="/" className="text-brand-secondary hover:underline">Return Home</Link>
+            <h1 className="text-4xl font-serif font-bold mb-4 text-brand-primary">Location Not Found</h1>
+            <p className="text-slate-600 mb-6">We serve all of Central Arkansas. Select an active service area below:</p>
+            <Link to="/" className="btn-primary">
+              Return to All-Star Renovations Homepage Hub
+            </Link>
           </div>
         </div>
         <Footer />
@@ -187,30 +269,39 @@ const LocationPage: React.FC = () => {
   }
 
   return (
-    <div className="relative min-h-screen bg-[#fcfcf9]">
+    <div className="relative min-h-screen bg-[#F9FAFB]">
       <Navbar />
       <main className="pt-24">
         {/* Location Hero */}
         <section 
-          className="bg-slate-900 text-white py-20 px-6 md:px-12 relative overflow-hidden"
-          aria-label={`Bathroom remodeling in ${location.name}, Arkansas`}
+          className="bg-slate-900 text-white py-24 px-6 md:px-12 relative overflow-hidden"
+          aria-label={`Bathroom remodeling services in ${location.name}, Arkansas`}
         >
-          <div className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center" />
+          <div className="absolute inset-0 opacity-25 bg-[url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center" />
           <div className="max-w-4xl mx-auto relative z-10 text-center">
-            <div className="inline-flex items-center gap-2 bg-brand-secondary/20 text-brand-secondary px-4 py-2 rounded-full mb-6">
+            <div className="inline-flex items-center gap-2 bg-brand-secondary/20 text-brand-secondary px-4 py-2 rounded-full mb-6 border border-brand-secondary/30">
               <MapPin className="w-4 h-4" />
-              <span className="text-sm font-semibold tracking-wider uppercase">Serving {location.name}, AR</span>
+              <span className="text-sm font-semibold tracking-wider uppercase">Serving {location.name}, {location.state} & Surrounding Areas</span>
             </div>
-            <h1 className="text-4xl md:text-6xl font-serif font-bold mb-6">
-              Premier Remodeling in <span className="text-brand-secondary">{location.name}</span>
+            <h1 className="text-4xl md:text-6xl font-serif font-bold mb-6 leading-tight">
+              Bathroom Remodeling in <span className="text-brand-secondary">{location.name}, {location.state}</span>
             </h1>
-            <p className="text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
-              {location.desc} All-Star Renovations brings expert craftsmanship and high-quality materials to every project in your area.
+            <p className="text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed mb-8">
+              {location.desc}
             </p>
+
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <a href={`/#${Section.CONTACT}`} className="btn-secondary text-slate-900">
+                Get Free {location.name} Estimate
+              </a>
+              <a href="tel:5015043398" className="btn-primary">
+                Call (501) 504-3398
+              </a>
+            </div>
           </div>
         </section>
 
-        {/* Services in Location */}
+        {/* Local Services Section */}
         <section 
           id="services" 
           className={`py-20 px-6 md:px-12 max-w-7xl mx-auto transition-all duration-1000 rounded-3xl ${
@@ -218,54 +309,95 @@ const LocationPage: React.FC = () => {
           }`}
         >
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-slate-900 mb-4">
-              Our Services in {location.name}
+            <span className="text-xs font-bold uppercase tracking-widest text-brand-secondary mb-2 block">Localized Excellence</span>
+            <h2 className="text-3xl md:text-5xl font-serif font-bold text-slate-900 mb-4">
+              Bathroom Remodeling Services in {location.name}, AR
             </h2>
             <p className="text-slate-600 max-w-2xl mx-auto">
-              We specialize in transforming homes with our comprehensive remodeling services.
+              We specialize in custom walk-in showers, tub-to-shower conversions, and safety walk-in bathtubs for homeowners in {location.name}.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {location.services.map((service, index) => (
-              <div key={index} className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-                <h3 className="text-2xl font-bold mb-4 text-slate-900">{service.title}</h3>
-                <p className="text-slate-600 mb-6 leading-relaxed">
-                  {service.description}
-                </p>
-                <ul className="space-y-3 mb-8">
-                  {service.features.map((item, i) => (
-                    <li key={i} className="flex items-center gap-3 text-slate-700">
-                      <CheckCircle2 className="w-5 h-5 text-brand-secondary flex-shrink-0" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link to={`/#${Section.SERVICES}`} className="text-brand-secondary font-semibold hover:underline flex items-center gap-2">
-                  Explore this service <Star className="w-4 h-4" />
-                </Link>
+              <div key={index} className="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-slate-200/80 hover:shadow-md transition-shadow flex flex-col justify-between">
+                <div>
+                  <h3 className="text-2xl font-serif font-bold mb-4 text-brand-primary">{service.title}</h3>
+                  <p className="text-slate-600 mb-6 leading-relaxed text-sm">
+                    {service.description}
+                  </p>
+                  <ul className="space-y-3 mb-8">
+                    {service.features.map((item, i) => (
+                      <li key={i} className="flex items-center gap-3 text-slate-700 text-sm font-medium">
+                        <CheckCircle2 className="w-5 h-5 text-brand-secondary flex-shrink-0" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                {/* Internal link with semantic anchor text */}
+                <div className="pt-6 border-t border-slate-100 flex items-center justify-between">
+                  <Link
+                    to={`/#${Section.SERVICES}`}
+                    className="text-brand-primary font-bold hover:text-brand-secondary transition-colors inline-flex items-center gap-2 text-sm"
+                  >
+                    <span>{service.linkAnchorText}</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
               </div>
             ))}
           </div>
         </section>
 
+        {/* Hub Linkback Banner for SEO */}
+        <section className="py-12 bg-brand-primary text-white px-6 md:px-12 border-y border-brand-primary/80">
+          <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+              <h3 className="text-2xl font-serif font-bold">Looking for Complete Bathroom Solutions?</h3>
+              <p className="text-slate-200 text-sm mt-1">Explore our main service hub for custom wall surrounds, shower systems, and financing options.</p>
+            </div>
+            <Link
+              to="/"
+              className="btn-secondary shrink-0 text-slate-900"
+            >
+              All-Star Renovations Main Hub
+            </Link>
+          </div>
+        </section>
+
         {/* Interactive Map Section */}
-        <section className="py-20 px-6 md:px-12 bg-slate-50 border-y border-slate-100">
+        <section className="py-20 px-6 md:px-12 bg-slate-50 border-b border-slate-200">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-slate-900 mb-4">
-                Our Service Areas
+                Service Coverage Across Central Arkansas
               </h2>
-              <p className="text-slate-600 max-w-2xl mx-auto">
-                Explore the communities we serve across Central Arkansas. Click on a location to see specific services offered in that area.
+              <p className="text-slate-600 max-w-2xl mx-auto text-sm">
+                In addition to {location.name}, we provide 1-2 day bathroom remodels throughout Faulkner and Pulaski counties. Select a city below to view localized service specifications:
               </p>
             </div>
 
+            {/* Semantic Internal Links List */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-12 text-center">
+              {locations.map((loc) => (
+                <Link
+                  key={loc.id}
+                  to={`/location/${loc.id}#services`}
+                  className={`p-4 rounded-2xl border transition-all text-sm font-bold ${
+                    loc.id === location.id
+                      ? 'bg-brand-primary text-white border-brand-primary shadow-md'
+                      : 'bg-white text-slate-800 border-slate-200 hover:border-brand-secondary hover:text-brand-primary'
+                  }`}
+                >
+                  Bathroom Remodeling in {loc.name}, AR
+                </Link>
+              ))}
+            </div>
+
             <div className="relative w-full max-w-4xl mx-auto aspect-[4/3] sm:aspect-[16/9] bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">
-              {/* Abstract Map Background */}
               <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(#1e293b 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
               
-              {/* Map Pins */}
               {locations.map((loc) => {
                 const isActive = loc.id === location.id;
                 return (
@@ -290,18 +422,15 @@ const LocationPage: React.FC = () => {
                     style={{ left: `${loc.coordinates.x}%`, top: `${loc.coordinates.y}%` }}
                   >
                     <div className="relative flex flex-col items-center">
-                      {/* Tooltip */}
-                      <div className={`absolute bottom-full mb-3 px-3 py-1.5 bg-slate-900 text-white text-sm font-bold rounded-lg whitespace-nowrap transition-all duration-300 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0'}`}>
-                        {loc.name}
+                      <div className={`absolute bottom-full mb-3 px-3 py-1.5 bg-slate-900 text-white text-xs font-bold rounded-lg whitespace-nowrap transition-all duration-300 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0'}`}>
+                        {loc.name}, AR
                         <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-slate-900" />
                       </div>
                       
-                      {/* Pin */}
-                      <div className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 ${isActive ? 'bg-brand-secondary scale-125 z-10' : 'bg-brand-primary hover:bg-brand-secondary hover:scale-110'}`}>
-                        <MapPin className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
+                      <div className={`w-7 h-7 sm:w-9 sm:h-9 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 ${isActive ? 'bg-brand-secondary scale-125 z-10' : 'bg-brand-primary hover:bg-brand-secondary hover:scale-110'}`}>
+                        <MapPin className="w-4 h-4 text-slate-900" />
                       </div>
                       
-                      {/* Pulse effect for active location */}
                       {isActive && (
                         <div className="absolute inset-0 rounded-full bg-brand-secondary animate-ping opacity-75" />
                       )}
